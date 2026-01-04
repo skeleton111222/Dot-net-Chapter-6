@@ -42,11 +42,58 @@ namespace Mvcdemoapp.Controllers
             _studentService = studentService;
         }
 
+
+        //public IActionResult Index()
+        //{
+        //    //Student student = new Student();
+        //    //return View(student);
+
+        //    Student student = _studentService.GetStudent();
+        //    return View(student);
+        //}
+
         public IActionResult Index()
         {
             Student student = _studentService.GetStudent();
 
             return View(student);
+        }
+        //public IActionResult Success()
+        //{
+        //    return View();
+        //}
+        [HttpPost]
+        public IActionResult Index(Student student)
+        {
+            return RedirectToAction("Success");
+            //return View(student);
+        }
+
+        public IActionResult Success()
+        {
+            return View();
+        }
+
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+        public IActionResult GetStudent()
+        {
+            var student = _studentService.GetStudent();
+            return Json(student);
+        }
+        public IActionResult GetStudentJson()
+        {
+            var student = _studentService.GetStudent();
+            return Json(student);
+        }
+        public IActionResult GetPlainText()
+        {
+            var student = _studentService.GetStudent();
+            return Content(
+                $"Student Name: {student.Name}, Age: {student.Age}"
+                );
         }
     }
 }
